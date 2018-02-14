@@ -1,7 +1,7 @@
 # HotelManagement_WindowsForm
 
 ## Overview
-Simple desktop application created with Windows Forms to hotel management.
+Simple desktop application created with Windows Forms for hotel management.
 
 ## Description
 The application connects with microsoft SQL Server where all informations about hotels and reservations are stored.
