@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="Osoby">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Osoby)">
+        <MappingFragment StoreEntitySet="Osoby">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="DataUrodzenia" ColumnName="DataUrodzenia" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rezerwacja">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Rezerwacja)">
+        <MappingFragment StoreEntitySet="Rezerwacja">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StatusZameldowaniaId" ColumnName="StatusZameldowaniaId" />
+          <ScalarProperty Name="ApartamentyId" ColumnName="ApartamentyId" />
+          <ScalarProperty Name="OsobyId" ColumnName="OsobyId" />
+          <ScalarProperty Name="StatusRezerwacji" ColumnName="StatusRezerwacji" />
+          <ScalarProperty Name="TerminPrzybycia" ColumnName="TerminPrzybycia" />
+          <ScalarProperty Name="TerminOdjazdu" ColumnName="TerminOdjazdu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Apartamenty">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Apartamenty)">
+        <MappingFragment StoreEntitySet="Apartamenty">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BudynkiId" ColumnName="BudynkiId" />
+          <ScalarProperty Name="TypId" ColumnName="TypId" />
+          <ScalarProperty Name="NumerPokoju" ColumnName="NumerPokoju" />
+          <ScalarProperty Name="Cena" ColumnName="Cena" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Budynki">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Budynki)">
+        <MappingFragment StoreEntitySet="Budynki">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+          <ScalarProperty Name="TelMenadzer" ColumnName="TelMenadzer" />
+          <ScalarProperty Name="TelRecepcja" ColumnName="TelRecepcja" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Typ">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Typ)">
+        <MappingFragment StoreEntitySet="Typ">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Udogodnienia">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Udogodnienia)">
+        <MappingFragment StoreEntitySet="Udogodnienia">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="opis" ColumnName="opis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusZameldowania">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.StatusZameldowania)">
+        <MappingFragment StoreEntitySet="StatusZameldowania">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="opis" ColumnName="opis" />
+          <ScalarProperty Name="OsobyId" ColumnName="OsobyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UdogodnieniaLista">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.UdogodnieniaLista)">
+        <MappingFragment StoreEntitySet="UdogodnieniaLista">
+          <ScalarProperty Name="UdogodnieniaId" ColumnName="UdogodnieniaId" />
+          <ScalarProperty Name="ApartamentyId" ColumnName="ApartamentyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Adresy">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Adresy)">
+        <MappingFragment StoreEntitySet="Adresy">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+          <ScalarProperty Name="Ulica" ColumnName="Ulica" />
+          <ScalarProperty Name="NumerBudynku" ColumnName="NumerBudynku" />
+          <ScalarProperty Name="Województwo" ColumnName="Województwo" />
+          <ScalarProperty Name="Kraj" ColumnName="Kraj" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="BudynkiAdresy" TypeName="Model1.BudynkiAdresy" StoreEntitySet="Budynki">
+      <EndProperty Name="Adresy">
+        <ScalarProperty Name="Id" ColumnName="Adresy_Id" />
+      </EndProperty>
+      <EndProperty Name="Budynki">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

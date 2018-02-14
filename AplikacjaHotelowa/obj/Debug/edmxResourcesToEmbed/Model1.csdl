@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Osoby" EntityType="Model1.Osoby" />
+    <EntitySet Name="Rezerwacja" EntityType="Model1.Rezerwacja" />
+    <EntitySet Name="Apartamenty" EntityType="Model1.Apartamenty" />
+    <EntitySet Name="Budynki" EntityType="Model1.Budynki" />
+    <EntitySet Name="Typ" EntityType="Model1.Typ" />
+    <EntitySet Name="Udogodnienia" EntityType="Model1.Udogodnienia" />
+    <EntitySet Name="StatusZameldowania" EntityType="Model1.StatusZameldowania" />
+    <EntitySet Name="UdogodnieniaLista" EntityType="Model1.UdogodnieniaLista" />
+    <EntitySet Name="Adresy" EntityType="Model1.Adresy" />
+    <AssociationSet Name="ApartamentyRezerwacja" Association="Model1.ApartamentyRezerwacja">
+      <End Role="Apartamenty" EntitySet="Apartamenty" />
+      <End Role="Rezerwacja" EntitySet="Rezerwacja" />
+    </AssociationSet>
+    <AssociationSet Name="BudynkiApartamenty" Association="Model1.BudynkiApartamenty">
+      <End Role="Budynki" EntitySet="Budynki" />
+      <End Role="Apartamenty" EntitySet="Apartamenty" />
+    </AssociationSet>
+    <AssociationSet Name="TypApartamenty" Association="Model1.TypApartamenty">
+      <End Role="Typ" EntitySet="Typ" />
+      <End Role="Apartamenty" EntitySet="Apartamenty" />
+    </AssociationSet>
+    <AssociationSet Name="UdogodnieniaUdogodnieniaLista" Association="Model1.UdogodnieniaUdogodnieniaLista">
+      <End Role="Udogodnienia" EntitySet="Udogodnienia" />
+      <End Role="UdogodnieniaLista" EntitySet="UdogodnieniaLista" />
+    </AssociationSet>
+    <AssociationSet Name="RezerwacjaOsoby" Association="Model1.RezerwacjaOsoby">
+      <End Role="Rezerwacja" EntitySet="Rezerwacja" />
+      <End Role="Osoby" EntitySet="Osoby" />
+    </AssociationSet>
+    <AssociationSet Name="StatusZameldowaniaOsoby" Association="Model1.StatusZameldowaniaOsoby">
+      <End Role="StatusZameldowania" EntitySet="StatusZameldowania" />
+      <End Role="Osoby" EntitySet="Osoby" />
+    </AssociationSet>
+    <AssociationSet Name="ApartamentyUdogodnieniaLista" Association="Model1.ApartamentyUdogodnieniaLista">
+      <End Role="Apartamenty" EntitySet="Apartamenty" />
+      <End Role="UdogodnieniaLista" EntitySet="UdogodnieniaLista" />
+    </AssociationSet>
+    <AssociationSet Name="StatusZameldowaniaRezerwacja" Association="Model1.StatusZameldowaniaRezerwacja">
+      <End Role="StatusZameldowania" EntitySet="StatusZameldowania" />
+      <End Role="Rezerwacja" EntitySet="Rezerwacja" />
+    </AssociationSet>
+    <AssociationSet Name="BudynkiAdresy" Association="Model1.BudynkiAdresy">
+      <End Role="Budynki" EntitySet="Budynki" />
+      <End Role="Adresy" EntitySet="Adresy" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Osoby">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Imie" Type="String" Nullable="false" />
+    <Property Name="Nazwisko" Type="String" Nullable="false" />
+    <Property Name="DataUrodzenia" Type="String" Nullable="false" />
+    <Property Name="Tel" Type="String" Nullable="false" />
+    <NavigationProperty Name="Rezerwacja" Relationship="Model1.RezerwacjaOsoby" FromRole="Osoby" ToRole="Rezerwacja" />
+    <NavigationProperty Name="StatusZameldowania" Relationship="Model1.StatusZameldowaniaOsoby" FromRole="Osoby" ToRole="StatusZameldowania" />
+  </EntityType>
+  <EntityType Name="Rezerwacja">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusZameldowaniaId" Type="Int32" Nullable="false" />
+    <Property Name="ApartamentyId" Type="Int32" Nullable="false" />
+    <Property Name="OsobyId" Type="Int32" Nullable="false" />
+    <Property Name="StatusRezerwacji" Type="String" Nullable="false" />
+    <Property Name="TerminPrzybycia" Type="DateTime" Nullable="false" />
+    <Property Name="TerminOdjazdu" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Apartamenty" Relationship="Model1.ApartamentyRezerwacja" FromRole="Rezerwacja" ToRole="Apartamenty" />
+    <NavigationProperty Name="Osoby" Relationship="Model1.RezerwacjaOsoby" FromRole="Rezerwacja" ToRole="Osoby" />
+    <NavigationProperty Name="StatusZameldowania" Relationship="Model1.StatusZameldowaniaRezerwacja" FromRole="Rezerwacja" ToRole="StatusZameldowania" />
+  </EntityType>
+  <EntityType Name="Apartamenty">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BudynkiId" Type="Int32" Nullable="false" />
+    <Property Name="TypId" Type="Int32" Nullable="false" />
+    <Property Name="NumerPokoju" Type="Int32" Nullable="false" />
+    <Property Name="Cena" Type="Decimal" Nullable="false" />
+    <NavigationProperty Name="Rezerwacja" Relationship="Model1.ApartamentyRezerwacja" FromRole="Apartamenty" ToRole="Rezerwacja" />
+    <NavigationProperty Name="Budynki" Relationship="Model1.BudynkiApartamenty" FromRole="Apartamenty" ToRole="Budynki" />
+    <NavigationProperty Name="Typ" Relationship="Model1.TypApartamenty" FromRole="Apartamenty" ToRole="Typ" />
+    <NavigationProperty Name="UdogodnieniaLista" Relationship="Model1.ApartamentyUdogodnieniaLista" FromRole="Apartamenty" ToRole="UdogodnieniaLista" />
+  </EntityType>
+  <EntityType Name="Budynki">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nazwa" Type="String" Nullable="false" />
+    <Property Name="TelMenadzer" Type="Int32" Nullable="false" />
+    <Property Name="TelRecepcja" Type="Int32" Nullable="false" />
+    <Property Name="Opis" Type="String" Nullable="true" />
+    <NavigationProperty Name="Apartamenty" Relationship="Model1.BudynkiApartamenty" FromRole="Budynki" ToRole="Apartamenty" />
+    <NavigationProperty Name="Adresy" Relationship="Model1.BudynkiAdresy" FromRole="Budynki" ToRole="Adresy" />
+  </EntityType>
+  <EntityType Name="Typ">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nazwa" Type="String" Nullable="false" />
+    <Property Name="Opis" Type="String" Nullable="true" />
+    <NavigationProperty Name="Apartamenty" Relationship="Model1.TypApartamenty" FromRole="Typ" ToRole="Apartamenty" />
+  </EntityType>
+  <EntityType Name="Udogodnienia">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nazwa" Type="String" Nullable="false" />
+    <Property Name="opis" Type="String" Nullable="true" />
+    <NavigationProperty Name="UdogodnieniaLista" Relationship="Model1.UdogodnieniaUdogodnieniaLista" FromRole="Udogodnienia" ToRole="UdogodnieniaLista" />
+  </EntityType>
+  <EntityType Name="StatusZameldowania">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="opis" Type="String" Nullable="false" />
+    <NavigationProperty Name="Osoby" Relationship="Model1.StatusZameldowaniaOsoby" FromRole="StatusZameldowania" ToRole="Osoby" />
+    <Property Name="OsobyId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Rezerwacja" Relationship="Model1.StatusZameldowaniaRezerwacja" FromRole="StatusZameldowania" ToRole="Rezerwacja" />
+  </EntityType>
+  <EntityType Name="UdogodnieniaLista">
+    <Key>
+      <PropertyRef Name="UdogodnieniaId" />
+      <PropertyRef Name="ApartamentyId" />
+    </Key>
+    <Property Name="UdogodnieniaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Udogodnienia" Relationship="Model1.UdogodnieniaUdogodnieniaLista" FromRole="UdogodnieniaLista" ToRole="Udogodnienia" />
+    <NavigationProperty Name="Apartamenty" Relationship="Model1.ApartamentyUdogodnieniaLista" FromRole="UdogodnieniaLista" ToRole="Apartamenty" />
+    <Property Name="ApartamentyId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Adresy">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Miasto" Type="String" Nullable="false" DefaultValue="Warszawa" />
+    <Property Name="Ulica" Type="String" Nullable="false" />
+    <Property Name="NumerBudynku" Type="String" Nullable="false" />
+    <Property Name="Województwo" Type="String" Nullable="false" />
+    <Property Name="Kraj" Type="String" Nullable="false" DefaultValue="Polska" />
+    <NavigationProperty Name="Budynki" Relationship="Model1.BudynkiAdresy" FromRole="Adresy" ToRole="Budynki" />
+  </EntityType>
+  <Association Name="ApartamentyRezerwacja">
+    <End Type="Model1.Apartamenty" Role="Apartamenty" Multiplicity="1" />
+    <End Type="Model1.Rezerwacja" Role="Rezerwacja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartamenty">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rezerwacja">
+        <PropertyRef Name="ApartamentyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BudynkiApartamenty">
+    <End Type="Model1.Budynki" Role="Budynki" Multiplicity="1" />
+    <End Type="Model1.Apartamenty" Role="Apartamenty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Budynki">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Apartamenty">
+        <PropertyRef Name="BudynkiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TypApartamenty">
+    <End Type="Model1.Typ" Role="Typ" Multiplicity="1" />
+    <End Type="Model1.Apartamenty" Role="Apartamenty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Typ">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Apartamenty">
+        <PropertyRef Name="TypId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UdogodnieniaUdogodnieniaLista">
+    <End Type="Model1.Udogodnienia" Role="Udogodnienia" Multiplicity="1" />
+    <End Type="Model1.UdogodnieniaLista" Role="UdogodnieniaLista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Udogodnienia">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UdogodnieniaLista">
+        <PropertyRef Name="UdogodnieniaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RezerwacjaOsoby">
+    <End Type="Model1.Rezerwacja" Role="Rezerwacja" Multiplicity="*" />
+    <End Type="Model1.Osoby" Role="Osoby" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Osoby">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rezerwacja">
+        <PropertyRef Name="OsobyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StatusZameldowaniaOsoby">
+    <End Type="Model1.StatusZameldowania" Role="StatusZameldowania" Multiplicity="*" />
+    <End Type="Model1.Osoby" Role="Osoby" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Osoby">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StatusZameldowania">
+        <PropertyRef Name="OsobyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ApartamentyUdogodnieniaLista">
+    <End Type="Model1.Apartamenty" Role="Apartamenty" Multiplicity="1" />
+    <End Type="Model1.UdogodnieniaLista" Role="UdogodnieniaLista" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartamenty">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UdogodnieniaLista">
+        <PropertyRef Name="ApartamentyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StatusZameldowaniaRezerwacja">
+    <End Type="Model1.StatusZameldowania" Role="StatusZameldowania" Multiplicity="1" />
+    <End Type="Model1.Rezerwacja" Role="Rezerwacja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusZameldowania">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rezerwacja">
+        <PropertyRef Name="StatusZameldowaniaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BudynkiAdresy">
+    <End Type="Model1.Budynki" Role="Budynki" Multiplicity="1" />
+    <End Type="Model1.Adresy" Role="Adresy" Multiplicity="1" />
+  </Association>
+</Schema>
