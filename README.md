@@ -1,18 +1,18 @@
-# HotelManagment_WindowsForm
+# HotelManagement_WindowsForm
 
 ## Overview
 Simple desktop application created with Windows Forms to hotel managment.
 
 ## Description
-The application connects with microsoft SQL Server where are stored all informations about hotels, reservations and people.
-Additionaly, informations about logins, logouts and adding new itms are stored in MongoDB. 
+The application connects with microsoft SQL Server where all informations about hotels and reservations are stored.
+Additionally, informations about logins, logouts are stored in MongoDB. 
 
 ## Functionality
-  - Table managment from the application level by Admin
+  - Table management from the application level by Admin
       
   - Checking logs by Admin
 
-  - Bokking
+  - Booking
 
   - Checking the availability of places in a given hotel at a given time
     
