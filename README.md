@@ -24,6 +24,3 @@ Additionally, informations about logins, logouts are stored in MongoDB.
 * [Sql Server](https://www.microsoft.com/pl-pl/sql-server/sql-server-downloads)
 
 * [MongoDB](https://www.mongodb.com)
-
-
-
